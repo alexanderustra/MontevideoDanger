@@ -31,14 +31,14 @@ const MapComponent: React.FC<MapProps> = ({ year }) => {
     const fetchData = async () => {
       try {
         const requests = Array.from({ length: 25 }, (_, i) => i + 1).map(async (i) => {
-          const response = await fetch(`/api/SECCIONAL ${i}/${year}`);
+          const response = await fetch(`${process.env.REACT_APP_API_URL}/api/SECCIONAL ${i}/${year}`);
           if (!response.ok) {
             console.error(`Failed to fetch data for SECCIONAL ${i}`);
-            return null; 
+            return null;
           }
           return response.json();
         });
-
+    
         const results: (Seccional | null)[] = await Promise.all(requests);
         const filteredResults: Seccional[] = results.filter((result): result is Seccional => result !== null);
         setSeccionales(filteredResults);
