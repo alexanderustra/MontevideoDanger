@@ -1,25 +1,26 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "app/app.mjs",
-        "use": "@vercel/node"
-      },
-      {
-        "src": "vite.config.ts",
-        "use": "@vercel/static-build",
-        "config": { "distDir": "dist" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "app/app.mjs",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "src/**/*",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
       }
-    ],
-    "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "/app/app.mjs"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/index.html"
-      }
-    ]
-  }
-  
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/app/app.mjs"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
