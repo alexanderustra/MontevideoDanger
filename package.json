@@ -2,17 +2,14 @@
   "name": "montevideo-danger",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://<tu-usuario>.github.io/Montevideo-Danger",
-  "type":"module",
+  "type": "module",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run dev\"",
     "server": "node app/app.mjs",
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@types/express": "^4.17.21",
@@ -35,7 +32,6 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
-    "gh-pages": "^4.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
