@@ -29,28 +29,23 @@ const MapComponent: React.FC<MapProps> = ({ year }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-  try {
-    const baseUrl = process.env.NODE_ENV === 'production'
-      ? 'https://<USERNAME>.github.io/MontevideoDanger'
-      : '';
+      try {
+        const requests = Array.from({ length: 25 }, (_, i) => i + 1).map(async (i) => {
+          const response = await fetch(`/api/SECCIONAL ${i}/${year}`);
+          if (!response.ok) {
+            console.error(`Failed to fetch data for SECCIONAL ${i}`);
+            return null; 
+          }
+          return response.json();
+        });
 
-    const requests = Array.from({ length: 25 }, (_, i) => i + 1).map(async (i) => {
-      const response = await fetch(`${baseUrl}/api/SECCIONAL ${i}/${year}`);
-      if (!response.ok) {
-        console.error(`Failed to fetch data for SECCIONAL ${i}`);
-        return null;
+        const results: (Seccional | null)[] = await Promise.all(requests);
+        const filteredResults: Seccional[] = results.filter((result): result is Seccional => result !== null);
+        setSeccionales(filteredResults);
+      } catch (error: any) {
+        console.error(error.message);
       }
-      return response.json();
-    });
-
-    const results = await Promise.all(requests);
-    const filteredResults = results.filter((result) => result !== null);
-    setSeccionales(filteredResults);
-  } catch (error:any) {
-    console.error(error.message);
-  }
-};
-  
+    };
 
     fetchData();
   }, [year]);
