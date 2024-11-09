@@ -25,7 +25,7 @@ function App() {
           setYear(2023)
         }
       }} >Search</button>
-      <p>(No data for 2024)</p>
+      <p>(Data between 2013 and 2023)</p>
     </>
   )
 }

@@ -34,7 +34,7 @@ const MapComponent: React.FC<MapProps> = ({ year }) => {
   }, [year]);
 
   return (
-    <MapContainer center={[-34.9011, -56.1645]} zoom={12} style={{ height: "600px", width: '100%' }}>
+    <MapContainer center={[-34.9011, -56.1645]} zoom={12} style={{ height: "60vh", width: '100%' }}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {seccionales.map((seccional, index) => {
         const delitosYear = seccional.delitos[year.toString()] || 0;
